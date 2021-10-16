@@ -1,46 +1,49 @@
 import { Injectable } from '@angular/core';
-import { AuthService } from './../services/auth.service';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
+import { EMPTY } from 'rxjs';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  ignoredRoutes: string[] = [
+    '/users',
+    '/users/login',
+  ]
 
   constructor(
-    private accountService: AuthService
+    private router: Router,
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
+    let ignoredRoute: boolean = false
+    let apiRoute: string = req.url.replace(environment.apiUrl, '');
+
+    for (let i = 0; i < this.ignoredRoutes.length; i++) {
+      if (apiRoute === this.ignoredRoutes[i]) {
+        ignoredRoute = true
+        break
+      }
+    }
+
+    if (ignoredRoute) {
+      return next.handle(req)
+    }
 
     const token = window.localStorage.getItem('token');
     let request: HttpRequest<any> = req;
-debugger
+
     if (token) {
       request = req.clone({
-        headers: req.headers.set('Authorization', `Bearer ${token}`)
-        .set('Access-Control-Allow-Origin', '*')
-        .set('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS')
+        setHeaders: {
+          'Authorization': `Bearer ${token}`
+        }
       });
-    }
-
-    return next.handle(request)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // Erro de client-side ou de rede
-      console.error('Ocorreu um erro:', error.error.message);
     } else {
-      // Erro retornando pelo backend
-      console.error(
-        `Código do erro ${error.status}, ` +
-        `Erro: ${JSON.stringify(error.error)}`);
+      this.router.navigate(['/login'])
+      return EMPTY;
     }
-    // retornar um observable com uma mensagem amigavel.
-    return throwError('Ocorreu um erro, tente novamente');
+
+    return next.handle(request);
   }
 }
