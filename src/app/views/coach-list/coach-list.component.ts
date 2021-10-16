@@ -30,8 +30,9 @@ export class CoachListComponent implements OnInit {
   }
 
   DeleteCoachees(coachee: any) {
-    this.http.delete(`${environment.apiUrl}/sessions/${coachee.id}`).toPromise()
-    this.GetCoachees();
+    this.http.delete(`${environment.apiUrl}/sessions/${coachee.id}`).subscribe(data => {
+      this.GetCoachees();
+    })
   }
 
   openDialog(item: any): void {
@@ -42,7 +43,7 @@ export class CoachListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.GetCoachees();
     });
   }
 
