@@ -12,8 +12,9 @@ import { RequestOptions } from '@angular/http';
 })
 export class CoachListComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'hour', 'description', 'edit', 'delete'];
+  displayedColumns: string[] = ['sessionNumber','scheduledDateTime', 'description', 'edit', 'delete'];
   dataSource = coachees;
+  data:any = []
 
   constructor(public dialog: MatDialog,
     private http: HttpClient) { }
@@ -26,11 +27,18 @@ export class CoachListComponent implements OnInit {
   GetCoachees() {
     let token = window.localStorage.getItem('token')
     let header = new HttpHeaders({'Authorization': `Bearer ${token}`})
-    const result = this.http.get(`http://localhost:8099/sessions`, {headers: header, withCredentials: true}).subscribe(data =>
-      console.log(data)
+    const result = this.http.get(`http://localhost:8099/sessions`, {headers: header}).subscribe(data =>{
+      this.data = data
+    }
     )
   }
 
+  DeleteCoachees(coachee: any) {
+    let token = window.localStorage.getItem('token')
+    let header = new HttpHeaders({'Authorization': `Bearer ${token}`})
+    const result = this.http.delete(`http://localhost:8099/sessions/${coachee.id}`, {headers: header}).toPromise()
+    this.GetCoachees();
+  }
   openDialog(): void {
     const dialogRef = this.dialog.open(CoacheeDetailsComponent, {
       width: '500px',
