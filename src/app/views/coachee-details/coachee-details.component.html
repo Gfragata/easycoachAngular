@@ -3,7 +3,7 @@
     <form [formGroup]="formCoachee">
         <mat-form-field appearance="fill" style="width: 405px; ">
             <mat-label>Nº da Sessão</mat-label>
-            <input matInput formControlName="sessionNumber" required>
+            <input matInput type="number" min="1" formControlName="sessionNumber" required >
         </mat-form-field>
         <mat-form-field appearance="fill" style="width: 405px;">
             <mat-label>Data da Sessão</mat-label>

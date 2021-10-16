@@ -47,7 +47,6 @@ export class CoacheeDetailsComponent implements OnInit {
   }
 
   loadForm() {
-    debugger
     this.formCoachee.patchValue({
       id: this.data.id,
       title: this.data.title,
@@ -57,7 +56,6 @@ export class CoacheeDetailsComponent implements OnInit {
       scheduledDateTime: this.data.scheduledDateTime,
       sessionNumber: this.data.sessionNumber,
     })
-    console.log(this.formCoachee.value)
   }
 
   async saveCoachee() {
@@ -69,7 +67,7 @@ export class CoacheeDetailsComponent implements OnInit {
       }
       this.close();
     } else {
-      alert("Campos obrigatorios não foram preenchidos");
+      alert("Campos obrigatorios não foram preenchidos ou valores estão incorretos");
     }
    
   }
