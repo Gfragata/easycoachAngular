@@ -3,25 +3,25 @@
     <form [formGroup]="formCoachee">
         <mat-form-field appearance="fill" style="width: 405px; ">
             <mat-label>Nº da Sessão</mat-label>
-            <input matInput formControlName="sessionNumber">
+            <input matInput formControlName="sessionNumber" required>
         </mat-form-field>
         <mat-form-field appearance="fill" style="width: 405px;">
             <mat-label>Data da Sessão</mat-label>
-            <input matInput formControlName="scheduledDateTime" [matDatepicker]="picker">
+            <input matInput formControlName="scheduledDateTime" [matDatepicker]="picker" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field appearance="fill" style="width: 405px;">
             <mat-label>Título</mat-label>
-            <input matInput formControlName="title">
+            <input matInput formControlName="title" required>
         </mat-form-field>
         <mat-form-field appearance="fill" style="width: 405px; ">
             <mat-label>Descrição</mat-label>
-            <textarea matInput style="height: 50px; resize: none;" formControlName="description"></textarea>
+            <textarea matInput style="height: 50px; resize: none;" formControlName="description" required></textarea>
         </mat-form-field>
         <mat-form-field appearance="fill" style="width: 405px; ">
             <mat-label >Link do Meet</mat-label>
-            <input matInput formControlName="inviteUrl">
+            <input matInput formControlName="inviteUrl" required>
         </mat-form-field>
         <mat-checkbox formControlName="hasCancellationFee">Cobrar taxa de cancelamento?</mat-checkbox>
     </form>

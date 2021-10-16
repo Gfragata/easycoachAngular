@@ -37,7 +37,7 @@ export class CoacheeDetailsComponent implements OnInit {
       id: new FormControl(""),
       title: new FormControl("", [Validators.required]),
       description: new FormControl("", [Validators.required]),
-      hasCancellationFee: new FormControl("", [Validators.required]),
+      hasCancellationFee: new FormControl(true, [Validators.required]),
       inviteUrl: new FormControl("", [Validators.required]),
       scheduledDateTime: new FormControl(this.data, [Validators.required]),
       sessionNumber: new FormControl("", [Validators.required]),
@@ -61,12 +61,17 @@ export class CoacheeDetailsComponent implements OnInit {
   }
 
   async saveCoachee() {
-    if(!this.data.id){
-      await this.http.post<any>(`${environment.apiUrl}/sessions/`, this.formCoachee.value).toPromise()
+    if(this.formCoachee.status != "INVALID"){
+      if(!this.data.id){
+        await this.http.post<any>(`${environment.apiUrl}/sessions/`, this.formCoachee.value).toPromise()
+      } else {
+        await this.http.put<any>(`${environment.apiUrl}/sessions/${this.data.id}`, this.formCoachee.value).toPromise()      
+      }
+      this.close();
     } else {
-      await this.http.put<any>(`${environment.apiUrl}/sessions/${this.data.id}`, this.formCoachee.value).toPromise()      
+      alert("Campos obrigatorios não foram preenchidos");
     }
-    this.close();
+   
   }
 
   async close() {
