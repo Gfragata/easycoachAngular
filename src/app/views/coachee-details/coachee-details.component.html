@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Sessão</h1>
+<div mat-dialog-content>
+    <form>
+        <mat-form-field appearance="fill" style="width: 405px;">
+            <mat-label>Data da Sessão</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 405px;">
+            <mat-label>Título</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 405px; ">
+            <mat-label>Descrição</mat-label>
+            <textarea matInput style="height: 50px; resize: none;"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 405px; ">
+            <mat-label>Link do Meet</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 405px; ">
+            <mat-label>Email</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-checkbox formControlName="cobrarTaxa">Cobrar taxa de cancelamento?</mat-checkbox>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
+    <button mat-button cdkFocusInitial>Ok</button>
+</div>

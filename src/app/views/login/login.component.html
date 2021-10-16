@@ -1,0 +1,19 @@
+<mat-card class="formLogin">
+    <div style="text-align: center;">
+        <h1 style="color: #1976d2;">Easy Coach</h1>
+    </div>
+    <form [formGroup]="formLogin">
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>usuário</mat-label>
+            <input matInput formControlName="username" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Senha</mat-label>
+            <input type="password" matInput formControlName="password" required>
+        </mat-form-field>
+    </form>
+    <div mat-dialog-actions style="margin-left: 25%;">
+        <button mat-button (click)="GetLogin()">Login</button>
+        <button mat-button (click)="openDialog()" style="background: grey; margin-left: 5%;">Nova Conta</button>
+    </div>
+</mat-card>
