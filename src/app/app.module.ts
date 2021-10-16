@@ -16,13 +16,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
 import { LoginComponent } from './views/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './views/create-account/create-account.component'
 import { httpInterceptorProviders } from './interceptor/index';
 import { AuthInterceptor } from './interceptor/auth-interceptor';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AuthInterceptor } from './interceptor/auth-interceptor';
     MatNativeDateModule,
     MatCardModule,
     HttpClientModule,
+    MatSortModule
   ],
   exports:[
     MatGridListModule,
@@ -61,7 +63,8 @@ import { AuthInterceptor } from './interceptor/auth-interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}
   ],
   bootstrap: [AppComponent]
 })

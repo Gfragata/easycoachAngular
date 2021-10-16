@@ -13,8 +13,8 @@ import { environment } from 'src/environments/environment';
 export class CoachListComponent implements OnInit {
   
   displayedColumns: string[] = ['sessionNumber', 'scheduledDateTime', 'description', 'edit', 'delete'];
-  dataSource = coachees;
-  data: any = []
+  dataSource:any = [];
+  selectedDate: any;
 
   constructor(public dialog: MatDialog,
     private http: HttpClient) { }
@@ -25,7 +25,7 @@ export class CoachListComponent implements OnInit {
 
   GetCoachees() {
     this.http.get(`${environment.apiUrl}/sessions`).subscribe(data => {
-      this.data = data
+      this.dataSource = data
     })
   }
 
@@ -34,11 +34,11 @@ export class CoachListComponent implements OnInit {
     this.GetCoachees();
   }
 
-  openDialog(): void {
+  openDialog(item: any): void {
     const dialogRef = this.dialog.open(CoacheeDetailsComponent, {
       width: '500px',
-      height: '650px',
-      data: { name: this.dataSource[1].name }
+      height: '620px',
+      data: item 
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -34,7 +34,7 @@ export class CreateAccountComponent implements OnInit {
   async CreateAccount() {
     try {
       await this.auth.CreateAccount(this.formCreate.value);
-      this.router.navigate([""]);
+      this.close();
     } catch (error) {
       console.error(error)
     }

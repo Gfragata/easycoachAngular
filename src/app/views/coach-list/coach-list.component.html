@@ -1,15 +1,15 @@
 <app-top-bar style="margin-top: -1.2%;"></app-top-bar>
 
 <div style="text-align: center;">
-    <h1>Agenda</h1>
+    <h1>Gerenciamento de Sessões</h1>
 </div>
 
 <mat-card class="demo-inline-calendar-card">
-    <mat-calendar (selectedChange)="openDialog()"></mat-calendar>
+    <mat-calendar  [selected]="selectedDate" (selectedChange)="openDialog($event)" value="selectedDate | date : 'dd/MM/yyyy'"></mat-calendar>
 </mat-card>
 
 <div>
-    <table mat-table [dataSource]="data" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
         <ng-container matColumnDef="sessionNumber">
             <th mat-header-cell *matHeaderCellDef></th>
@@ -29,7 +29,7 @@
         <ng-container matColumnDef="edit">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-                <button mat-button style="background: white;" (click)="openDialog()">
+                <button mat-button style="background: white;" (click)="openDialog(element)">
                     <i class="material-icons" style="color:  #1976d2;">edit</i></button>
             </td>
         </ng-container>
