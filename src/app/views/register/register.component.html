@@ -3,7 +3,7 @@
         <h1 style="color: #1976d2;">Easy Coach</h1>
     </div>
     <div style="text-align: center;">
-        <h1 style="font-style: italic;">Login</h1>
+        <h1 style="font-style: italic;">Criar Conta</h1>
     </div>
     <form [formGroup]="formLogin">
         <mat-form-field appearance="fill" style="width: 100%;">
@@ -16,7 +16,7 @@
         </mat-form-field>
     </form>
     <div mat-dialog-actions style="margin-left: 25%;">
-        <button mat-button (click)="GetLogin()">Entrar</button>
-        <button mat-button (click)="createAccount()" style="background: grey; margin-left: 5%;">Nova Conta</button>
+        <button mat-button (click)="Entrar()">Entrar</button>
+        <button mat-button (click)="Cancelar()" style="background: grey; margin-left: 5%;">Cancelar</button>
     </div>
 </mat-card>

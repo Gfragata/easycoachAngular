@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Login } from 'src/app/shared/Login';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { CreateAccountComponent } from '../create-account/create-account.component';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   formLogin!: FormGroup;
 
@@ -32,9 +31,10 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  async GetLogin() {
+  async Entrar() {
     if(this.formLogin.status != "INVALID"){
       try {
+        await this.auth.CreateAccount(this.formLogin.value);
         await this.auth.getLogin(this.formLogin.value);
         this.router.navigate([""]);
       } catch (error) {
@@ -45,8 +45,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  createAccount(){
-    this.router.navigate(["register"]);
+  Cancelar(){
+    this.router.navigate(["login"]);
   }
 
 }

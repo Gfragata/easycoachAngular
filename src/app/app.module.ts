@@ -24,6 +24,7 @@ import { CreateAccountComponent } from './views/create-account/create-account.co
 import { httpInterceptorProviders } from './interceptor/index';
 import { AuthInterceptor } from './interceptor/auth-interceptor';
 import { MatSortModule } from '@angular/material/sort';
+import { RegisterComponent } from './views/register/register.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatSortModule } from '@angular/material/sort';
     CoacheeDetailsComponent,
     LoginComponent,
     CreateAccountComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
