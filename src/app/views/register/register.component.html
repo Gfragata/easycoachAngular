@@ -6,13 +6,15 @@
         <h1 style="font-style: italic;">Criar Conta</h1>
     </div>
     <form [formGroup]="formLogin">
-        <mat-form-field appearance="fill" style="width: 100%;">
-            <mat-label>usuário</mat-label>
+        <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 5px;">
+            <mat-label>E-mail</mat-label>
             <input matInput formControlName="username" required>
+            <mat-error>É necessario informar um e-mail valido</mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 5px;">
             <mat-label>Senha</mat-label>
             <input type="password" matInput formControlName="password" required>
+            <mat-error>É necessario informar sua senha</mat-error>
         </mat-form-field>
     </form>
     <div mat-dialog-actions style="margin-left: 25%;">

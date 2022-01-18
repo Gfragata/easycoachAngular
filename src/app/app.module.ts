@@ -20,7 +20,6 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
 import { LoginComponent } from './views/login/login.component';
 import { FormsModule } from '@angular/forms';
-import { CreateAccountComponent } from './views/create-account/create-account.component'
 import { httpInterceptorProviders } from './interceptor/index';
 import { AuthInterceptor } from './interceptor/auth-interceptor';
 import { MatSortModule } from '@angular/material/sort';
@@ -33,7 +32,6 @@ import { RegisterComponent } from './views/register/register.component';
     TopBarComponent,
     CoacheeDetailsComponent,
     LoginComponent,
-    CreateAccountComponent,
     RegisterComponent,
   ],
   imports: [

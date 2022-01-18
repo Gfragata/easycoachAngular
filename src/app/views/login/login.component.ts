@@ -4,7 +4,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Login } from 'src/app/shared/Login';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateAccountComponent } from '../create-account/create-account.component';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   createForm(login: Login) {
     this.formLogin = new FormGroup({
-      username: new FormControl(login.username, [Validators.required]),
+      username: new FormControl(login.username, [Validators.email]),
       password: new FormControl(login.password, [Validators.required]),
     })
   }
@@ -41,7 +40,7 @@ export class LoginComponent implements OnInit {
         console.error(error)
       }
     } else {
-      alert("Usuário ou senha invalido");
+      alert("E-mail e/ou senha invalido");
     }
   }
 

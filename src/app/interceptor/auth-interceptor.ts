@@ -17,8 +17,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     let ignoredRoute: boolean = false
-    let apiRoute: string = req.url.replace(environment.apiUrl, '');
+    let apiRoute: string = req.url.replace(environment.userApiUrl, '');
 
+    debugger
     for (let i = 0; i < this.ignoredRoutes.length; i++) {
       if (apiRoute === this.ignoredRoutes[i]) {
         ignoredRoute = true
